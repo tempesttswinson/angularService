@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PersonService } from '../person.service';
+import { Person } from '../person';
 
 @Component({
   selector: 'app-comp-one',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompOneComponent implements OnInit {
 
-  constructor() { }
+  peeps: Person[];
 
-  ngOnInit(): void {
+  constructor(private personService: PersonService) { }
+
+  ngOnInit() {
+    //this.peeps = this.personService.getPerson();
   }
+
+  get data(): Person[] {
+    return this.personService.getPerson();
+  }
+
+  // getPeeps() {
+  //   this.personService.getPeople().subscribe(p => this.peeps = p);
+  // }
 
 }
